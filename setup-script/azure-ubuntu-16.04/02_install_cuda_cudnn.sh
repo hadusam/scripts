@@ -2,9 +2,10 @@
 #echo "---- check if nvidia driver installed "
 #nvidia-smi
 echo "---- install CUDA 8.0.61"
-wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda_8.0.61_375.26_linux-run
-chmod +x cuda_8.0.61_375.26_linux-run
-sudo ./`ls cuda_8.0*_linux-run| head -1` --silent --toolkit --samples --verbose
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
+sudo dpkg -i ./`ls cuda-repo-ubuntu*.deb | head -1`
+sudo apt update
+sudo apt install -y cuda
 echo "---- add path to /etc/profile"
 cat << EOF | sudo tee -a /etc/profile
 # CUDA
