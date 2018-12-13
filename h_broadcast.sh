@@ -22,7 +22,8 @@ fi
 
 for SERVER in `cat $SERVER_LIST`
 do
-    nc -z -w 1 $SERVER 22
+    # nc -z -w 1 $SERVER 22
+    ping -c 1 -W 1 $SERVER > /dev/null 2>&1
     OFFLINE_FLAG=`echo $?`
     if [ $OFFLINE_FLAG -ne 0 ];then
         OFFLINE_SERVER=`echo "${OFFLINE_SERVER}|${SERVER}"`
